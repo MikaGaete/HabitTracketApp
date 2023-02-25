@@ -6,6 +6,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {HabitsProvider} from "./Habits/HabitsProvider.jsx";
 import {UserProvider} from "./UserData/UserProvider.jsx";
 import {HabitPage} from "./Pages/HabitPage.jsx";
+import {HabitCreation} from "./Pages/HabitCreation.jsx";
+import {HabitCreationForm} from "./Pages/HabitCreationForm.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -13,6 +15,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <UserProvider>
                 <Routes>
                     <Route path={'/'} element={<Landing/>}/>
+                    <Route path={'/habit/new'} element={<HabitCreation/>}/>
+                    <Route path={'/habit/new/:name/:icon/:color'} element={<HabitCreationForm/>}/>
                     <Route path={'/habit/:name/:date'} element={<HabitPage/>}/>
                 </Routes>
             </UserProvider>

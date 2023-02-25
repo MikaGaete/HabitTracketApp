@@ -7,9 +7,9 @@ export const UserProvider = ({children}) => {
         {
             type: "",
             name: "Walk",
-            icon: "https://static.thenounproject.com/png/112220-200.png",
+            icon: "Running",
             color: {
-                primary: "C57B57",
+                primary: "bg-lime-500",
                 secondary: "F1AB86"
             },
             goal: {
@@ -17,17 +17,17 @@ export const UserProvider = ({children}) => {
                 unit: "steps"
             },
             frecuency: ['Tuesday', 'Thursday', 'Saturday'],
-            reminders: ['20:12', '20:14', '20:16'],
+            reminders: ['11:05', '11:08', '11:11'],
             message: "There's no living without walking",
             history: [],
-        }/*,
+        },
         {
             type: "",
             name: "Read",
-            icon: "https://img.favpng.com/20/0/17/computer-icons-book-png-favpng-80cubVqjQmBHYCFaaxbdEQQQt.jpg",
+            icon: "Reading",
             color: {
-                primary: "#785589",
-                secondary: "#977390"
+                primary: "bg-red-600",
+                secondary: "977390"
             },
             goal: {
                 number: 100,
@@ -36,8 +36,8 @@ export const UserProvider = ({children}) => {
             frecuency: ['Thursday', 'Saturday', 'Sunday'],
             reminders: ['21:15', '21:17', '21:19'],
             message: "A reader lives a thousand lives before he dies",
-
-        },*/
+            history: [],
+        },
     ])
 
     return (
