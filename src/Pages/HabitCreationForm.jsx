@@ -6,33 +6,47 @@ import Select from "react-select/base";
 export const HabitCreationForm = () => {
     const {Colors, Icons} = useContext(HabitsContext);
     const {name, icon, color} = useParams();
-
+    const [notifications, setNotifications] = useState(false);
+    const [notificationArray, setNotificationArray] = useState([]);
     const [selectedAtributes, setSelectedAtributes] = useState({
         name: name,
         icon: icon,
         color: color,
         goalValue: 0,
-        goalUnit: ""
+        goalUnit: "",
+        notifications: []
     });
 
-    const Days = [
-        {value: "Monday", label: "Monday"},
-        {value: "Tuesday", label: "Tuesday"},
-        {value: "Wednesday", label: "Wednesday"},
-        {value: "Thursday", label: "Thursday"},
-        {value: "Friday", label: "Friday"},
-        {value: "Saturday", label: "Saturday"},
-        {value: "Sunday", label: "Sunday"}
-    ]
-
-    console.log(selectedAtributes);
+    console.log(selectedAtributes.notifications);
 
     const changes = (event) => {
         event.preventDefault();
+        if (event.target.name.slice(0, event.target.name.length - 1) === 'notifications') {
+            console.log('Buenas');
+            if ([event.target.name].at(event.target.name.slice(event.target.name.length - 1))) {
+                setSelectedAtributes({
+                    ...selectedAtributes,
+
+                })
+                [event.target.name][event.target.name.slice(event.target.name.length - 1)] = event.target.value;
+                return
+            }
+            const aux = selectedAtributes;
+            aux[event.target.name.slice(event.target.name.length - 1)] = event.target.value;
+            setSelectedAtributes(aux)
+        }
         setSelectedAtributes({
             ...selectedAtributes,
             [event.target.name]: event.target.value,
         })
+    }
+
+    const addNotification = (event) => {
+        event.preventDefault();
+        if (notificationArray.length === 0) {
+            setNotifications(true);
+        }
+        setNotificationArray([...notificationArray, (notificationArray.length + 1)]);
     }
 
     const colors = Object.keys(Colors);
@@ -77,7 +91,7 @@ export const HabitCreationForm = () => {
                     </div>
                     <div className={'w-full'}>
                         <legend>Name</legend>
-                        <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'name'} type={'text'} onChange={changes}/>
+                        <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'name'} type={'text'} onChange={changes} defaultValue={name}/>
                     </div>
                     <div className={'w-full flex flex-row justify-between'}>
                         <div className={'flex flex-col w-[48%]'}>
@@ -90,8 +104,18 @@ export const HabitCreationForm = () => {
                         </div>
                     </div>
                     <div className={'w-full'}>
-                        <legend>Name</legend>
-                        <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'name'} type={'text'} onChange={changes}/>
+                        <legend>Notifications{notifications ? '' : '?'}</legend>
+                        {notifications ?
+                            <div>
+                                {
+                                    notificationArray.map((number) =>
+                                        <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'notifications' + number} type={'time'} onChange={changes}/>
+                                    )
+                                }
+                                <button className={`h-16 rounded-lg my-auto mx-auto flex justify-center items-center border-2 w-16 text-2xl`} onClick={addNotification}> + </button>
+                            </div> :
+                            <button className={`h-16 rounded-lg my-auto mx-auto flex justify-center items-center border-2 w-16 text-2xl`} onClick={addNotification}> + </button>
+                        }
                     </div>
                 </form>
                 <div className={' flex flex-col justify-around h-full w-[90%] lg:w-[50%] mx-auto my-2'}>
