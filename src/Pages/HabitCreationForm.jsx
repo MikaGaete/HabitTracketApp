@@ -22,18 +22,12 @@ export const HabitCreationForm = () => {
     const changes = (event) => {
         event.preventDefault();
         if (event.target.name.slice(0, event.target.name.length - 1) === 'notifications') {
-            console.log('Buenas');
-            if ([event.target.name].at(event.target.name.slice(event.target.name.length - 1))) {
-                setSelectedAtributes({
-                    ...selectedAtributes,
-
-                })
-                [event.target.name][event.target.name.slice(event.target.name.length - 1)] = event.target.value;
-                return
-            }
-            const aux = selectedAtributes;
+            const aux = selectedAtributes.notifications;
             aux[event.target.name.slice(event.target.name.length - 1)] = event.target.value;
-            setSelectedAtributes(aux)
+            setSelectedAtributes({
+                ...selectedAtributes,
+                [event.target.name.slice(0, event.target.name.length - 1)]: aux
+            })
         }
         setSelectedAtributes({
             ...selectedAtributes,
@@ -46,7 +40,7 @@ export const HabitCreationForm = () => {
         if (notificationArray.length === 0) {
             setNotifications(true);
         }
-        setNotificationArray([...notificationArray, (notificationArray.length + 1)]);
+        setNotificationArray([...notificationArray, (notificationArray.length)]);
     }
 
     const colors = Object.keys(Colors);
@@ -102,6 +96,10 @@ export const HabitCreationForm = () => {
                             <legend>Goal Unit</legend>
                             <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'goalUnit'} type={'text'} onChange={changes}/>
                         </div>
+                    </div>
+                    <div className={'w-full'}>
+                        <legend>Name</legend>
+                        <input className={`h-16 rounded-lg my-1 flex justify-between border-2 p-4 w-full`} name={'name'} type={'date'} onChange={changes} defaultValue={name}/>
                     </div>
                     <div className={'w-full'}>
                         <legend>Notifications{notifications ? '' : '?'}</legend>
