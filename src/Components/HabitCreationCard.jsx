@@ -2,13 +2,13 @@ import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {HabitsContext} from "../Habits/HabitsContext.jsx";
 
-export const HabitCreationCard = ({name, icon, color}) => {
+export const HabitCreationCard = ({name, icon, color, category}) => {
     const navigate = useNavigate();
     const {Colors} = useContext(HabitsContext);
 
 
     const ExpandHabit = () => {
-        navigate(`/habit/new/${name}/${icon}/${color}`)
+        navigate(`/habit/new/${category}/${name}/${icon}/${color}`)
     }
 
     return (

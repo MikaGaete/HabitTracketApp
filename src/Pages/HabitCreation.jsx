@@ -7,11 +7,8 @@ import {Link} from "react-router-dom";
 
 export const HabitCreation = () => {
     const {Habits, Colors} = useContext(HabitsContext);
-    const {setHabits} = useContext(UserContext);
-
     const categories = Object.keys(Habits);
 
-    console.log(Habits, Colors);
     return (
         <div className={'w-[100%] h-full min-h-screen'}>
             <div className={'flex flex-col justify-between min-h-screen h-full p-4'}>
@@ -28,12 +25,12 @@ export const HabitCreation = () => {
                 </div>
                 <div className={'flex flex-col justify-around h-full w-[90%] lg:w-[50%] mx-auto my-2'}>
                     {categories.map(category => (
-                        <div>
+                        <div key={category}>
                             <div className={'font-semibold text-xl'}>
                                 {category}
                             </div>
                             {Habits[category].map(habit =>
-                                <HabitCreationCard key={habit.name} {...habit}/>
+                                <HabitCreationCard key={habit.name} category={category} {...habit}/>
                             )}
                         </div>
                     ))}

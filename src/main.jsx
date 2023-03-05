@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Routes>
                     <Route path={'/'} element={<Landing/>}/>
                     <Route path={'/habit/new'} element={<HabitCreation/>}/>
-                    <Route path={'/habit/new/:name/:icon/:color'} element={<HabitCreationForm/>}/>
+                    <Route path={'/habit/new/:category/:name/:icon/:color'} element={<HabitCreationForm/>}/>
                     <Route path={'/habit/:name/:date'} element={<HabitPage/>}/>
                 </Routes>
             </UserProvider>

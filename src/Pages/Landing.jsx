@@ -18,12 +18,11 @@ export const Landing = () => {
     test.setTime(Date.now());
     not.componentDidMount();
 
-    console.log()
     console.log(currentTime);
 
     useEffect(() => {
-        for (let i = 0; i < habits.length; i++) {
-            habits[i].frecuency.forEach((day) => {
+        for (let i = 0; i < habits.length - 1; i++) {
+            habits[i].frequency.forEach((day) => {
                 if (day === (new Intl.DateTimeFormat("en-US", {weekday: "long"}).format(test))) {
                     habits[i].reminders.forEach((reminder) => {
                         const time = reminder.split(':');
@@ -80,7 +79,7 @@ export const Landing = () => {
                     </div>
                 </div>
                 <div className={'flex flex-col justify-around h-full w-[90%] lg:w-[50%] mx-auto'}>
-                    {habits.map((habit) => <HabitCard key={habit.name} currentDate={currentDate} {...habit} />)}
+                    {habits.map((habit) => <HabitCard key={habit.name + habit.goal.number} currentDate={currentDate} {...habit} />)}
                 </div>
                 <div className={'flex flex-row justify-around w-[100%] lg:w-[50%] mx-auto bottom-0'}>
                     <Link to={'/habit/new'}  className={'my-auto'}>
